@@ -1,0 +1,72 @@
+vagrant@raring64-vanilla:~/django/tests$ sudo python3 runtests.py 
+Testing against Django installed in '/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django'
+Creating test database for alias 'default'...
+Creating test database for alias 'other'...
+...........s..............................
+======================================================================
+ERROR: test_template (django.contrib.formtools.tests.wizard.wizardtests.tests.WizardTestKwargs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/contrib/formtools/tests/wizard/wizardtests/tests.py", line 314, in test_template
+    response = self.client.get(self.wizard_url)
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/test/client.py", line 467, in get
+    **extra)
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/test/client.py", line 285, in get
+    return self.generic('GET', path, secure=secure, **r)
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/test/client.py", line 355, in generic
+    return self.request(**r)
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/test/client.py", line 437, in request
+    six.reraise(*exc_info)
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/utils/six.py", line 536, in reraise
+    raise value
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/core/handlers/base.py", line 138, in get_response
+    response = response.render()
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/template/response.py", line 103, in render
+    self.content = self.rendered_content
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/template/response.py", line 78, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/template/response.py", line 54, in resolve_template
+    return loader.select_template(template)
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/template/loader.py", line 193, in select_template
+    raise TemplateDoesNotExist(', '.join(not_found))
+django.template.base.TemplateDoesNotExist: other_wizard_form.html
+
+======================================================================
+ERROR: django.contrib.gis.tests.test_spatialrefsys (unittest.loader.ModuleImportFailure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/lib/python3.3/unittest/case.py", line 385, in _executeTestPart
+    function()
+  File "/usr/lib/python3.3/unittest/loader.py", line 32, in testFailure
+    raise exception
+ImportError: Failed to import test module: django.contrib.gis.tests.test_spatialrefsys
+Traceback (most recent call last):
+  File "/usr/lib/python3.3/unittest/loader.py", line 261, in _find_tests
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.3/unittest/loader.py", line 239, in _get_module_from_name
+    __import__(name)
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/contrib/gis/tests/test_spatialrefsys.py", line 6, in <module>
+    from django.contrib.gis.utils import add_srs_entry
+ImportError: cannot import name add_srs_entry
+
+
+======================================================================
+FAIL: test_template_loader_postmortem_notreadable (view_tests.tests.test_debug.DebugViewTests)
+Tests for not readable file
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/vagrant/django/tests/view_tests/tests/test_debug.py", line 122, in test_template_loader_postmortem_notreadable
+    self.assertContains(response, "%s (File is not readable)" % template_path, status_code=500, count=1)
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/test/testcases.py", line 356, in assertContains
+    response, text, status_code, msg_prefix, html)
+  File "/usr/local/lib/python3.3/dist-packages/Django-1.7a1-py3.3.egg/django/test/testcases.py", line 326, in _assert_contains
+    " (expected %d)" % (response.status_code, status_code))
+AssertionError: 200 != 500 : Couldn't retrieve content: Response code was 200 (expected 500)
+
+----------------------------------------------------------------------
+Ran 6762 tests in 269.889s
+
+FAILED (failures=1, errors=2, skipped=586, expected failures=7)
+Destroying test database for alias 'default'...
+Destroying test database for alias 'other'...
+vagrant@raring64-vanilla:~/django/tests$ 
