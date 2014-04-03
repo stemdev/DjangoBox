@@ -46,9 +46,15 @@ $startup = <<EOF
 
   wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
   sudo python ez_setup.py
+  rm setuptools*
+  rm ez_setup.py
 
   git clone https://github.com/django/django.git
   cd django
   sudo python setup.py install
+  cd ..
+  rm -rf django
+
+
 
 EOF
